@@ -1,67 +1,76 @@
-# Antimicrobial Resistance Simulation using OD600
-# B.Tech Biotechnology Mini Project
+# Antimicrobial Resistance Simulation (OD600 Model)
 
-import matplotlib.pyplot as plt
-import random
+---
 
-print("🧫 ANTIBIOTIC RESISTANCE SIMULATOR (OD600 MODEL)")
-print("------------------------------------------------")
+## Project Title
+Antimicrobial Resistance Simulation using OD600 Growth Model
 
-# Time points (hours)
-time = list(range(0, 13))  # 0 to 12 hours
+---
 
-# Function to simulate bacterial growth
-def bacterial_growth(rate, antibiotic_effect):
-    od_values = []
-    od = 0.05  # initial OD600
+## Aim
+To simulate and compare bacterial growth behavior of sensitive and resistant strains under antibiotic stress using OD600 values.
 
-    for t in time:
-        noise = random.uniform(-0.01, 0.01)
-        od = od + (rate * od * (1 - antibiotic_effect)) + noise
+---
 
-        if od < 0:
-            od = 0
+## Project Description
+This project is a Python-based biological simulation that models bacterial population growth in the presence of antibiotics. It demonstrates how antibiotic resistance affects bacterial survival and growth dynamics through computational modeling and visualization.
 
-        od_values.append(round(od, 3))
+---
 
-    return od_values
+## Methodology
+- Exponential bacterial growth model implemented in Python
+- Antibiotic effect reduces growth rate in sensitive strain
+- Resistant strain has reduced antibiotic impact
+- Random noise added to simulate biological variation
+- Time interval: 0 to 12 hours
+- Visualization performed using Matplotlib
 
-# Input section
-print("\nChoose bacterial strain:")
-print("1. Sensitive strain")
-print("2. Resistant strain")
+---
 
-choice = input("Enter choice (1 or 2): ")
+## Tools and Technologies Used
+- Python
+- Matplotlib
+- Random module
 
-# Parameters
-if choice == "1":
-    strain = "Sensitive"
-    growth_rate = 0.35
-    antibiotic_effect = 0.60
-else:
-    strain = "Resistant"
-    growth_rate = 0.35
-    antibiotic_effect = 0.15
+---
 
-# Generate OD600 curve
-od_data = bacterial_growth(growth_rate, antibiotic_effect)
+## Results
 
-# Print results
-print(f"\n🧫 Strain Selected: {strain}")
-print("\nTime (hrs)  |  OD600")
-print("----------------------")
+### Sensitive Strain Growth Curve
+![Sensitive Graph](sensitive_graph.png)
 
-for t, od in zip(time, od_data):
-    print(f"{t:>3}        |  {od}")
+---
 
-# Plot growth curve
-plt.figure(figsize=(8, 5))
-plt.plot(time, od_data, marker="o", linewidth=2, color="blue")
-plt.title(f"OD600 Growth Curve - {strain} strain")
-plt.xlabel("Time (hours)")
-plt.ylabel("OD600")
-plt.grid(True)
-plt.tight_layout()
-plt.show()
+### Resistant Strain Growth Curve
+![Resistant Graph](resistant_graph.png)
 
-print("\n✅ Simulation complete!")
+---
+
+## OD600 Data Tables
+
+### Sensitive Strain Data
+![Sensitive Table](sensitive_table.png)
+
+---
+
+### Resistant Strain Data
+![Resistant Table](resistant_table.png)
+
+---
+
+## Observations
+- Sensitive strain shows reduced growth under antibiotic exposure
+- Resistant strain maintains higher OD600 values under the same conditions
+- Clear difference in survival patterns between the two strains
+
+---
+
+## Conclusion
+The simulation demonstrates that antibiotic resistance provides a significant survival advantage to bacteria under antibiotic stress conditions.
+
+---
+
+## How to Run the Project
+
+```bash
+python antimicrobial_simulation.py
